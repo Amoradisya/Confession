@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>from Amora for you</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <h1 class="header-title">from Nadya to Langit</h1>
+
+    <div class="game-container" id="gameContainer">
+        <!-- AMPLOP 3D REALISTIS DENGAN PITA & STAMP LOVE TIMBUL -->
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope-3d-card" id="envelopeTarget">
+                <!-- Flap Lipatan Atas 3D -->
+                <div class="flap-3d"></div>
+                
+                <!-- Stamp Love 3D Timbul -->
+                <div class="love-stamp-3d">
+                    <div class="heart-3d-icon">❤️</div>
+                </div>
+
+                <!-- Pita Horisontal 3D -->
+                <div class="ribbon-band-3d"></div>
+
+                <!-- Ikatan Simpul Pita 3D Bervolume -->
+                <div class="bow-3d-wrap">
+                    <div class="bow-loop-3d left"></div>
+                    <div class="bow-knot-3d"></div>
+                    <div class="bow-loop-3d right"></div>
+                    <div class="bow-tail-3d left-tail"></div>
+                    <div class="bow-tail-3d right-tail"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BUSUR RECURVE & PANAH MATA SUPER LANCIP -->
+        <div class="arrow-hint-container">
+            <div class="cupid-bow-vector" id="cupidBow">
+                <svg width="150" height="150" viewBox="0 0 120 120">
+                    <defs>
+                        <linearGradient id="bowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f28b9d;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#ffb3c6;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#d84a65;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    
+                    <path d="M 12 85 C 8 75 10 50 35 30 C 50 20 58 15 60 15 C 62 15 70 20 85 30 C 110 50 112 75 108 85 C 105 88 100 85 103 80 C 106 70 100 48 80 32 C 68 22 62 20 60 20 C 58 20 52 22 40 32 C 20 48 14 70 17 80 C 20 85 15 88 12 85 Z" fill="url(#bowGrad)" stroke="#ffffff" stroke-width="1.2"/>
+                    <rect x="54" y="16" width="12" height="12" rx="3" fill="#d84a65"/>
+                    <line x1="12" y1="85" x2="108" y2="85" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="3,2"/>
+                    
+                    <!-- MATA PANAH EKSTRA LANCIP -->
+                    <g id="arrowInBow">
+                        <line x1="60" y1="92" x2="60" y2="15" stroke="#d84a65" stroke-width="3"/>
+                        <polygon points="60,-22 55,18 60,10 65,18" fill="#d84a65" stroke="#ffffff" stroke-width="0.8"/>
+                        <polygon points="60,92 48,106 60,98 72,106" fill="#f28b9d"/>
+                    </g>
+                </svg>
+            </div>
+            
+            <p class="hint-text">Arahkan & klik ke amplop</p>
+            <p class="missed-text" id="missedText">cupid never misses twice 😜</p>
+        </div>
+    </div>
+
+    <!-- PANAH MELESAT -->
+    <div class="flying-arrow" id="flyingArrow">
+        <svg width="50" height="90" viewBox="0 0 40 80">
+            <line x1="20" y1="70" x2="20" y2="15" stroke="#d84a65" stroke-width="3"/>
+            <polygon points="20,-18 15,22 20,14 25,22" fill="#d84a65" stroke="#ffffff" stroke-width="0.8"/>
+            <polygon points="20,70 8,84 20,77 32,84" fill="#f28b9d"/>
+        </svg>
+    </div>
+
+    <!-- SURAT POP-UP -->
+    <div class="pixel-window-modal" id="letterModal">
+        <div class="pixel-window">
+            <div class="window-header">
+                <span class="window-title">LOVE</span>
+                <div class="window-buttons">
+                    <span class="win-btn"></span>
+                    <span class="win-btn"></span>
+                    <span class="win-btn"></span>
+                </div>
+            </div>
+
+            <div class="window-body">
+                <div class="heart-icons">♥️ ♥️ ♥️</div>
+
+                <p class="question-text">Do you want to be my boyfriend? ♡</p>
+
+                <div class="image-box">
+                    <img src="cat-flower.jpeg" alt="Cat Flower" class="custom-photo">
+                </div>
+
+                <div class="btn-board" id="btnBoard">
+                    <button class="pixel-btn btn-yes" id="btnYes">YES</button>
+                    <button class="pixel-btn btn-no" id="btnNo">NO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESULT MODAL -->
+    <div class="result-modal" id="resultModal">
+        <div class="pixel-window">
+            <div class="window-header">
+                <span class="window-title">LOVE</span>
+                <div class="window-buttons">
+                    <span class="win-btn"></span>
+                    <span class="win-btn"></span>
+                    <span class="win-btn"></span>
+                </div>
+            </div>
+            <div class="window-body">
+                <h2 class="yay-text">yayyy, i love uu ❤️</h2>
+                
+                <div class="image-box">
+                    <img src="hug-character.jpeg" alt="Hug Character" class="custom-photo happy-bounce">
+                </div>
+
+                <p class="happy-subtext">im really happy u accept me 🥺💕</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="heartBurst" class="heart-burst-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
