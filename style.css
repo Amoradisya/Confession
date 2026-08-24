@@ -1,0 +1,575 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fcefe8;
+    font-family: 'VT323', 'Press Start 2P', monospace;
+    overflow: hidden;
+    position: relative;
+    cursor: crosshair;
+}
+
+/* SVG HEART STYLING DEFAULT */
+.heart-svg {
+    width: 100%;
+    height: 100%;
+    fill: #ff85a2;
+}
+
+/* BACKGROUND HEARTS MELAYANG SLOW */
+.hearts-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.small-heart {
+    position: absolute;
+    bottom: -30px;
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: floatUp 8s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { 
+        transform: translateY(0) rotate(0deg); 
+        opacity: 0; 
+    }
+    20% { 
+        opacity: 0.85; 
+    }
+    80% { 
+        opacity: 0.85; 
+    }
+    100% { 
+        transform: translateY(-108vh) rotate(360deg); 
+        opacity: 0; 
+    }
+}
+
+.header-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.15rem;
+    color: #f28b9d;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px #fff;
+    z-index: 2;
+    text-transform: lowercase;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    z-index: 2;
+}
+
+.envelope-wrapper {
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+/* AMPLOP 3D EFFECT REALISTIS */
+.envelope-3d-card {
+    position: relative;
+    width: 310px;
+    height: 215px;
+    background: linear-gradient(145deg, #ffffff 0%, #ffc2d1 100%);
+    border-radius: 16px;
+    box-shadow: 
+        0 20px 35px rgba(216, 74, 101, 0.3),
+        inset 0 -6px 12px rgba(216, 74, 101, 0.2),
+        inset 0 3px 6px rgba(255, 255, 255, 0.9);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.envelope-3d-card:hover {
+    transform: rotateX(12deg) rotateY(-8deg) scale(1.05);
+}
+
+.flap-3d {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 155px solid transparent;
+    border-right: 155px solid transparent;
+    border-top: 110px solid #ff9ebb;
+    filter: drop-shadow(0 8px 8px rgba(180, 50, 80, 0.25));
+    z-index: 2;
+}
+
+.love-stamp-3d {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #ffccd5, #ff4d6d);
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    animation: stampPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes stampPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.12); }
+}
+
+.heart-3d-icon {
+    font-size: 22px;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+}
+
+.ribbon-band-3d {
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    height: 36px;
+    background: linear-gradient(180deg, #ff85a2 0%, #d84a65 100%);
+    transform: translateY(-50%);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15), inset 0 2px 2px rgba(255, 255, 255, 0.5);
+    z-index: 3;
+}
+
+.bow-3d-wrap {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    width: 120px;
+    height: 75px;
+}
+
+.bow-knot-3d {
+    position: absolute;
+    width: 26px;
+    height: 28px;
+    background: linear-gradient(145deg, #ffb3c6, #c93b56);
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    left: 47px;
+    top: 23px;
+    z-index: 8;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+}
+
+.bow-loop-3d {
+    position: absolute;
+    width: 50px;
+    height: 44px;
+    background: radial-gradient(circle at 35% 35%, #ffccd5 0%, #d84a65 85%);
+    border: 2.5px solid #ffffff;
+    top: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.22);
+}
+
+.bow-loop-3d.left {
+    left: 2px;
+    border-radius: 65% 35% 25% 65%;
+    transform: rotate(-15deg);
+}
+
+.bow-loop-3d.right {
+    right: 2px;
+    border-radius: 35% 65% 65% 25%;
+    transform: rotate(15deg);
+}
+
+.bow-tail-3d {
+    position: absolute;
+    width: 22px;
+    height: 56px;
+    background: linear-gradient(180deg, #ff85a2 0%, #b02a43 100%);
+    top: 34px;
+    border-radius: 4px;
+    z-index: 5;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.bow-tail-3d.left-tail {
+    left: 30px;
+    transform: rotate(24deg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+}
+
+.bow-tail-3d.right-tail {
+    right: 30px;
+    transform: rotate(-24deg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+}
+
+/* BUSUR & PANAH */
+.arrow-hint-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.cupid-bow-vector {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 8px 10px rgba(216, 74, 101, 0.3));
+    transition: transform 0.05s ease-out;
+    transform-origin: center center;
+}
+
+.flying-arrow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 90px;
+    pointer-events: none;
+    display: none;
+    z-index: 999;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
+}
+
+.flying-arrow.fade-out {
+    opacity: 0;
+}
+
+.hint-text {
+    font-size: 1.5rem;
+    color: #e56b81;
+}
+
+.missed-text {
+    font-size: 1.3rem;
+    color: #d84a65;
+    display: none;
+    font-weight: bold;
+}
+
+/* MODAL SURAT */
+.pixel-window-modal, .result-modal {
+    display: none;
+    z-index: 10;
+    animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pixel-window {
+    width: 380px;
+    background-color: #f7b2bd;
+    border: 4px solid #f28b9d;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(242, 139, 157, 0.35);
+    overflow: hidden;
+}
+
+.window-header {
+    background-color: #f28b9d;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.window-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: #ffffff;
+}
+
+.window-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.win-btn {
+    width: 12px;
+    height: 12px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.window-body {
+    padding: 24px 18px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    background-color: #fce1e6;
+    background-image: 
+        linear-gradient(90deg, rgba(242, 139, 157, 0.15) 50%, transparent 50%),
+        linear-gradient(rgba(242, 139, 157, 0.15) 50%, transparent 50%);
+    background-size: 18px 18px;
+}
+
+/* KOREKSI: 3 LOVE DI DALAM KARTU DISETEL HORIZONTAL */
+.heart-icons {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.heart-icons .heart-icon-item {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    animation: heartbeat 1.4s infinite ease-in-out;
+}
+
+.heart-icons .heart-icon-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.heart-icons .heart-icon-item:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.25); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.15); }
+}
+
+.question-text, .yay-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.82rem;
+    color: #d84a65;
+    line-height: 1.5;
+}
+
+.happy-subtext {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: #d84a65;
+    line-height: 1.4;
+}
+
+.image-box {
+    width: 210px;
+    height: 210px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-photo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+}
+
+.happy-bounce {
+    animation: happyBounce 1s infinite alternate ease-in-out;
+}
+
+@keyframes happyBounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+/* TOMBOL KARTU */
+.btn-board {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 75px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.pixel-btn {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.75rem;
+    padding: 12px 22px;
+    border: 3px solid #f28b9d;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #d84a65;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px #f28b9d;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.pixel-btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-yes {
+    position: absolute;
+    left: 45px;
+    z-index: 1;
+}
+
+.btn-no {
+    position: absolute;
+    right: 45px;
+    z-index: 9999;
+    white-space: nowrap;
+    box-sizing: border-box;
+    transition: left 0.25s ease, top 0.25s ease;
+}
+
+/* CONTAINER HUJAN HATI BERDEBAR SETELAH MENCET YES */
+.heart-burst-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999; /* Z-index ditingkatkan agar di atas seluruh elemen */
+}
+
+/* SVG HATI BERDEBAR DENYUT */
+.beating-heart-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 8px rgba(216, 74, 101, 0.4));
+    animation: heartPulse 0.8s infinite ease-in-out alternate;
+}
+
+@keyframes heartPulse {
+    0% { transform: scale(0.85); }
+    100% { transform: scale(1.2); }
+}
+
+/* ELEMEN HATI MENGALIR JATUH SEPERTI KELOPAK BUNGA */
+.falling-beating-heart {
+    position: absolute;
+    will-change: transform, opacity;
+}
+
+@keyframes petalFall {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    15% {
+        opacity: 0.95;
+    }
+    85% {
+        opacity: 0.85;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(115vh);
+    }
+}
+
+@keyframes petalSway {
+    0% {
+        transform: translateX(-35px) rotate(-25deg);
+    }
+    100% {
+        transform: translateX(35px) rotate(25deg);
+    }
+}
+
+@keyframes popUp {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ===================================================
+   EFEK LEDAKAN LOVE SLOW-MOTION MEMANCAR 360 DERAJAT
+   =================================================== */
+
+/* Wadah utama overlay paling atas */
+.heart-burst-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999999;
+}
+
+/* Dikunci tepat di 50vw & 50vh (Tepat Pusat Monitor) */
+.grand-burst-heart {
+    position: fixed;
+    left: 50vw !important;
+    top: 50vh !important;
+    pointer-events: none;
+    z-index: 999999;
+    will-change: transform, opacity;
+}
+
+/* Animasi meledak memancar melambat (Slow-Motion) */
+@keyframes fireworkExplode {
+    0% {
+        transform: translate(-50%, -50%) scale(0.1) rotate(0deg);
+        opacity: 1;
+    }
+    70% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.6) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* SVG Heart Berdebar (Pulse) */
+.beating-heart-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 10px rgba(216, 74, 101, 0.5));
+    animation: heartPulse 0.7s infinite ease-in-out alternate;
+}
+
+@keyframes heartPulse {
+    0% { transform: scale(0.85); }
+    100% { transform: scale(1.2); }
+}
+
+/* Hujan Love Falling */
+.falling-beating-heart {
+    position: absolute;
+    will-change: transform, opacity;
+}
+
+@keyframes petalFall {
+    0% { opacity: 0; transform: translateY(0); }
+    15% { opacity: 0.95; }
+    85% { opacity: 0.85; }
+    100% { opacity: 0; transform: translateY(115vh); }
+}
+
+@keyframes petalSway {
+    0% { transform: translateX(-35px) rotate(-25deg); }
+    100% { transform: translateX(35px) rotate(25deg); }
+}
